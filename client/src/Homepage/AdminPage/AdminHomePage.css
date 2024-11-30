@@ -1,0 +1,183 @@
+/* General Styles */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden; /* Disable horizontal scrolling */
+}
+
+.admin-home {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #0056b3; /* Darker blue header */
+  color: white;
+  position: sticky;
+  top: 0; /* Sticks the header to the top of the viewport */
+  z-index: 100; /* Ensures the header stays above other content */
+  /* width: 100%; Ensure the header spans the full width */
+}
+
+.header-left button {
+  background-color: #003366;
+  border: none;
+  padding: 10px 15px;
+  margin-right: 10px;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.header-left button.active {
+  background-color: #002244;
+}
+
+.tab-button:hover {
+  background-color: #004080;
+}
+
+.header-right {
+  font-size: 18px;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  background-color: #1c1b4d;
+  max-width: 100%; /* Prevents content from exceeding the viewport width */
+}
+
+.question-list {
+  background-color: rgb(27, 25, 98);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.question-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.question-item:last-child {
+  border-bottom: none;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.pass-button,
+.delete-button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pass-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.pass-button:hover {
+  background-color: #218838;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #c82333;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  font-size: 18px;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.loading-spinner::after {
+  content: '...';
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    content: '...';
+  }
+  50% {
+    content: '..';
+  }
+  100% {
+    content: '.';
+  }
+}
+
+.confirmation-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.dialog-actions button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+}
+
+.dialog-actions button:hover {
+  background-color: #0056b3;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logout-button {
+  background-color: #dc3545; /* Red color for logout button */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.logout-button:hover {
+  background-color: #c82333; /* Darker red on hover */
+}

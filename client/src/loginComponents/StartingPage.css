@@ -1,0 +1,89 @@
+/* Full-screen container */
+.starting-page-container {
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #1e1e2f, #242447); /* Gradient background */
+  color: #f5f5f5; /* Light text color */
+  min-height: 100vh; /* Full-screen height */
+  min-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box; /* Include padding in total width/height */
+  overflow: hidden; /* Prevent overflow */
+  transition: background 0.5s ease; /* Smooth transition for background */
+}
+
+/* Heading */
+.welcome-heading {
+  margin-bottom: 2rem;
+  color: #f5f5f5;
+  font-size: 3rem; /* Larger font size for emphasis */
+  font-weight: bold; /* Bold font */
+  letter-spacing: 2px; /* Slightly increased letter spacing for elegance */
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3); /* Soft text shadow for depth */
+  transition: transform 0.3s ease; /* Smooth heading transition */
+}
+
+.welcome-heading:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+/* Button Group */
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Increased gap between buttons for visual balance */
+}
+
+/* Buttons */
+.navigate-button {
+  padding: 1rem 2.5rem; /* Larger padding for better clickability */
+  border: none;
+  border-radius: 1rem; /* Rounder corners for modern look */
+  font-size: 1.2rem;
+  cursor: pointer;
+  background-color: #007bff; /* Primary blue */
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for buttons */
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navigate-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Slightly bigger shadow on hover */
+}
+
+.navigate-button:active {
+  transform: scale(0.98); /* Slight press effect */
+}
+
+/* Specific Styling for Signup Button */
+.signup-button {
+  background-color: #28a745; /* Green for distinction */
+}
+
+.signup-button:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .welcome-heading {
+    font-size: 2.5rem; /* Slightly smaller font on smaller screens */
+    margin-bottom: 1.5rem; /* Adjust margin for smaller screens */
+  }
+
+  .navigate-button {
+    font-size: 1rem;
+    padding: 0.8rem 1.8rem; /* Adjust padding on smaller screens */
+  }
+
+  .button-group {
+    gap: 1rem; /* Smaller gap between buttons */
+  }
+}

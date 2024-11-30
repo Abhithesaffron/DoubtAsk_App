@@ -1,0 +1,47 @@
+/* Styles for the question card */
+.question-card {
+    background-color: #1e1e2f;
+    color: #f5f5f5;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .question-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Styling for the question text */
+  .question-text {
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: #e6e6ff;
+    cursor: pointer;
+  }
+  
+  /* Styling for the information section */
+  .question-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #a9a9b8;
+  }
+  
+  .username {
+    font-style: italic;
+  }
+  
+  .likes {
+    font-weight: bold;
+    color: #ffa500; /* Highlight likes in orange */
+  }
+  
+  /* Hidden state for inactive components */
+  .hidden {
+    display: none;
+  }
+  

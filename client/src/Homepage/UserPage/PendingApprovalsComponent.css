@@ -1,0 +1,52 @@
+/* Styling for the pending question item container */
+.pending-question-item {
+    position: relative;
+    margin-bottom: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #1e1e2f;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Icons container */
+  .question-actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  /* Individual icons */
+  .edit-icon,
+  .delete-icon {
+    font-size: 18px;
+    cursor: pointer;
+    color: #f5f5f5;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .edit-icon:hover {
+    color: #00c8ff;
+  }
+  
+  .delete-icon:hover {
+    color: #ff4c4c;
+  }
+  
+  /* General question list styling */
+  .question-list {
+    margin: 20px auto;
+    max-width: 600px;
+    font-family: Arial, sans-serif;
+    color: #f5f5f5;
+  }
+  
+  .question-list h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
