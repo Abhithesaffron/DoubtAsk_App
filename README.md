@@ -6,7 +6,7 @@ App link [https://doubtask.netlify.app/]
 ## *as its backend is deployed on free instace of render it will take approx one minute for first login , please have patience* 
 ---
 
-# **Deployed Full stack App link**
+# **Deployed Full stack App Demo video link**
 
 video link [https://www.loom.com/share/fa37434fa94f4a79bde4d5c870e1fbe4?sid=6a971907-bba7-4115-b335-430e5f26e28c]
 
