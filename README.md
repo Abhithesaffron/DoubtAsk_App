@@ -1,3 +1,10 @@
+
+#**Deployed Full stack App link**
+
+App link [https://doubtask.netlify.app/]
+
+*as its backend is deployed on free instace of render it will take approx one minute for first login , please have patience* 
+
 # **Admin-User Management System**
 
 This project is a full-stack **Admin-User Management System** that implements secure authentication, role-based access control, and distinct dashboards for admins and users. The application supports token-based authorization, protected routes, and user-friendly error handling.
@@ -130,8 +137,8 @@ cd your-repo-name
    ```
 
 ### **4. Run the Application**
-- Frontend: Open [http://localhost:3000](http://localhost:3000).
-- Backend: Running at `http://localhost:5000`.
+- Frontend: Open [(https://doubtask.netlify.app/)]([https://doubtask.netlify.app/]).
+- Backend: Running at `https://doubtask-app.onrender.com`.
 
 ---
 
