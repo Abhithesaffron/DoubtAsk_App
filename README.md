@@ -112,7 +112,7 @@ cd your-repo-name
    ```
 4. Start the frontend:
    ```bash
-   npm start
+   npm run dev
    ```
 
 ### **3. Backend Setup**
@@ -133,7 +133,7 @@ cd your-repo-name
    ```
 4. Start the backend:
    ```bash
-   npm start
+   npm test
    ```
 
 ### **4. Run the Application**
