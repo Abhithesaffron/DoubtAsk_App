@@ -5,6 +5,13 @@ App link [https://doubtask.netlify.app/]
 
 ## *as its backend is deployed on free instace of render it will take approx one minute for first login , please have patience* 
 ---
+
+# **Deployed Full stack App link**
+
+video link [https://www.loom.com/share/fa37434fa94f4a79bde4d5c870e1fbe4?sid=6a971907-bba7-4115-b335-430e5f26e28c]
+
+---
+
 # **Admin-User Management System**
 
 This project is a full-stack **Admin-User Management System** that implements secure authentication, role-based access control, and distinct dashboards for admins and users. The application supports token-based authorization, protected routes, and user-friendly error handling.
