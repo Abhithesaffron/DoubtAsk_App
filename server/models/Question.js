@@ -4,6 +4,7 @@ const AutoIncrement = require('mongoose-sequence')(mongoose);
 const QuestionSchema = new mongoose.Schema({
   questionId: { type: Number, unique: true }, // Auto-incremented
   userId: { type: Number, required: true }, // Reference to User.userId
+  userName: { type: String, required: true },
   questionText: { type: String, required: true },
   status: {
     type: String,

@@ -75,7 +75,7 @@ const LoginAdmin = () => {
       {/* Display error message if any */}
       {error && <div className="error-message">{error}</div>}
 
-      <button className="google-login">Login with Google</button>
+      {/* <button className="google-login">Login with Google</button> */}
     </div>
   );
 };

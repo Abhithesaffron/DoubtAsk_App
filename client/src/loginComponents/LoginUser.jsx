@@ -63,7 +63,7 @@ const LoginUser = () => {
         />
         <button type="submit">Login</button>
       </form>
-      <button className="google-login">Login with Google</button>
+      {/* <button className="google-login">Login with Google</button> */}
     </div>
   );
 };

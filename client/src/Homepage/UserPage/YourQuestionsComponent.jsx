@@ -80,7 +80,7 @@ const YourQuestionsComponent = () => {
         }
       );
 
-      console.log("Deleted Question:", response.data);
+      // console.log("Deleted Question:", response.data);
 
       // Remove the deleted question from the state
       setUserQuestions((prev) => prev.filter((question) => question.questionId !== id));

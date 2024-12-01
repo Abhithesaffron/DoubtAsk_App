@@ -80,7 +80,10 @@
     color: #555;
   }
   
-  .post-question,
+  .post-question{
+    margin-left: 80px;
+    margin-right: 100px;
+  }
   .your-questions,
   .pending-approvals {
     margin-top: 20px;

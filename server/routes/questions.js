@@ -40,7 +40,7 @@ router.post('/', authMiddleware, async (req, res) => {
   const { text } = req.body;
   // console.log(req.user.userId);
   try {
-    const newQuestion = new Question({ questionText:text, userId: req.user.userId });
+    const newQuestion = new Question({ questionText:text, userId: req.user.userId , userName : req.user.userName});
     await newQuestion.save();
     res.status(201).json(newQuestion);
   } catch (err) {
@@ -99,10 +99,12 @@ router.post('/:id/:action', authMiddleware, async (req, res) => {
     const userId = req.user.userId;
     const action = req.params.action; // "like" or "unlike"
 
+    // console.log(userId , action , question.likes);
+
     // Toggle like or unlike based on the action
     if (action === "like" && !question.likes.includes(userId)) {
       question.likes.push(userId);
-    } else if (action === "unlike" && question.likes.includes(userId)) {
+    } else if (action === "dislike" && question.likes.includes(userId)) {
       question.likes = question.likes.filter((id) => id !== userId);
     }
 
@@ -116,14 +118,14 @@ router.post('/:id/:action', authMiddleware, async (req, res) => {
 
 
 // Route 9: Add a comment
-router.post('/:id/comment', authMiddleware, async (req, res) => {
+router.post('/:id/new/comment', authMiddleware, async (req, res) => {
   const { text } = req.body;
   
   try {
     const question = await Question.findOne({ questionId: req.params.id });    if (!question) {
       return res.status(404).json({ error: 'Question not found' });
     }
-
+    // console.log(question);
     // Create a new comment with the text provided
     const comment = {
       commentText: text,

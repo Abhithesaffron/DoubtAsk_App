@@ -9,7 +9,7 @@ const router = express.Router();
 // Signup Route
 router.post('/signup', async (req, res) => {
   const { email, password } = req.body;
-  console.log(email , password);
+  // console.log(email , password);
   try {
     const existingUser = await User.findOne({ userEmail : email });
     if (existingUser) {
@@ -44,7 +44,7 @@ router.post('/login', async (req, res) => {
     }
 
     // Create a token with user info and isAdmin flag
-    const token = jwt.sign({ userId: user.userId, isAdmin: user.isAdmin }, process.env.JWT_SECRET, { expiresIn: '8h' });
+    const token = jwt.sign({ userId: user.userId, isAdmin: user.isAdmin , userName : user.userEmail}, process.env.JWT_SECRET, { expiresIn: '8h' });
 
     // Send both the token and isAdmin flag
     res.status(200).json({ message: 'Login successful', token, isAdmin: user.isAdmin , userName: user.userEmail , userId : user.userId });

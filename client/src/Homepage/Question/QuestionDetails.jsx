@@ -3,24 +3,23 @@ import axios from "axios";
 import "./QuestionDetails.css";
 
 const QuestionDetails = ({ question, closeDetails }) => {
-  const [comments, setComments] = useState(question.comments || []);
+  const [comments, setComments] = useState(question.comments || []); // Initialize with existing comments
   const [newComment, setNewComment] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const token = localStorage.getItem("authToken");
 
   const API_BASE_URL = `${import.meta.env.VITE_BASE_URL}/api/questions`;
 
+  // Function to add a comment
   const handleAddComment = async () => {
-    if (newComment.trim() === "") return;
+    if (newComment.trim() === "") return; // Prevent empty comments
 
-    const newCommentObj = { commentText: newComment }; // Match backend format
-    setComments((prevComments) => [...prevComments, newCommentObj]);
-    setNewComment("");
+    setIsSubmitting(true); // Disable UI during submission
 
-    setIsSubmitting(true);
     try {
-      await axios.post(
-        `${API_BASE_URL}/${question.questionId}/comment`,
+      // Send a POST request to add the new comment
+      const response = await axios.post(
+        `${API_BASE_URL}/${question.questionId}/new/comment`,
         { text: newComment },
         {
           headers: {
@@ -28,22 +27,29 @@ const QuestionDetails = ({ question, closeDetails }) => {
           },
         }
       );
+
+      // Update comments state with the new list of comments from the backend
+      setComments(response.data.comments);
+      question.comments=response.data.comments;
+      question.likes=response.data.likes;
+      // Clear the input field
+      setNewComment("");
     } catch (error) {
       console.error("Error adding comment:", error);
-      alert("Failed to add comment. Rolling back...");
-      setComments((prevComments) =>
-        prevComments.filter((comment) => comment !== newCommentObj)
-      );
+      alert("Failed to add comment. Please try again.");
     } finally {
-      setIsSubmitting(false);
+      setIsSubmitting(false); // Re-enable UI
     }
   };
 
   return (
     <div className="question-details">
+      {/* Close button */}
       <button className="close-button" onClick={closeDetails}>
         &times;
       </button>
+
+      {/* Comments Section */}
       <div className="comments-section">
         <h4>Comments:</h4>
         {comments.length === 0 ? (
@@ -52,12 +58,14 @@ const QuestionDetails = ({ question, closeDetails }) => {
           <ul className="comment-list">
             {comments.map((comment, index) => (
               <li key={index} className="comment-item">
-                {typeof comment === "string" ? comment : comment.commentText}
+                {comment.commentText}
               </li>
             ))}
           </ul>
         )}
       </div>
+
+      {/* Add Comment Section */}
       <div className="add-comment">
         <input
           type="text"
@@ -65,12 +73,12 @@ const QuestionDetails = ({ question, closeDetails }) => {
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
           className="comment-input"
-          disabled={isSubmitting}
+          disabled={isSubmitting} // Disable input while submitting
         />
         <button
           onClick={handleAddComment}
           className="comment-button"
-          disabled={isSubmitting}
+          disabled={isSubmitting} // Disable button while submitting
         >
           {isSubmitting ? "Adding..." : "Add"}
         </button>
