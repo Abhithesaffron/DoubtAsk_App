@@ -7,11 +7,18 @@ const ProtectedRoute = ({ children }) => {
 
   // Check if the current route is for admin or user
   if (window.location.pathname.includes('/admin-home') && !isAdminLoggedIn) {
-    return <Navigate to="/admin-login" />;
+    return <Navigate to="/" />;
   }
 
   if (window.location.pathname.includes('/user-home') && !isUserLoggedIn) {
-    return <Navigate to="/user-login" />;
+    return <Navigate to="/" />;
+  }
+
+  const token = localStorage.getItem('authToken');
+
+  if (!token) {
+    // If no token, redirect to login/signup page
+    return <Navigate to="/" replace />;
   }
 
   return children;

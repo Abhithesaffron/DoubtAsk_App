@@ -24,6 +24,6 @@ const QuestionSchema = new mongoose.Schema({
 
 // Add auto-increment plugins to questionId and commentId
 QuestionSchema.plugin(AutoIncrement, { inc_field: 'questionId' });
-QuestionSchema.plugin(AutoIncrement, { inc_field: 'comments.commentId' });
+// QuestionSchema.plugin(AutoIncrement, { inc_field: 'comments.commentId' });
 
 module.exports = mongoose.model('Question', QuestionSchema);

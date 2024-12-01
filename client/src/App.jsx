@@ -41,7 +41,7 @@ const App = () => {
               path="/user-home"
               element={
                 <ProtectedRoute>
-                  <UserHomePage username="JohnDoe" />
+                  <UserHomePage />
                 </ProtectedRoute>
               }
             />

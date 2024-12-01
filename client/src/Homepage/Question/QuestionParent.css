@@ -1,9 +1,7 @@
-/* Wrapper for all questions */
-.question-list {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
+.question-container {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+}

@@ -46,11 +46,12 @@ const AdminHomePage = () => {
 
   const handlePass = async (question) => {
     try {
-      await axios.put(`${API_BASE_URL}/${question.id}/status`, {
-        status: "approved",
+      await axios.put(`${API_BASE_URL}/${question.questionId}/status`, {
+        status: "approved" }, 
+         { headers: { Authorization: `Bearer ${token}` }
       });
       setApprovedQuestions((prev) => [...prev, question]);
-      setPendingQuestions((prev) => prev.filter((q) => q.id !== question.id));
+      setPendingQuestions((prev) => prev.filter((q) => q.questionId !== question.questionId));
     } catch (error) {
       console.error("Error approving question:", error);
     }
@@ -58,11 +59,12 @@ const AdminHomePage = () => {
 
   const handleDelete = async (question, type) => {
     try {
-      await axios.delete(`${API_BASE_URL}/${question.id}`);
+      await axios.delete(`${API_BASE_URL}/${question.questionId}` , { headers: { Authorization: `Bearer ${token}` }
+      });
       if (type === "pending") {
-        setPendingQuestions((prev) => prev.filter((q) => q.id !== question.id));
+        setPendingQuestions((prev) => prev.filter((q) => q.questionId !== question.questionId));
       } else if (type === "approved") {
-        setApprovedQuestions((prev) => prev.filter((q) => q.id !== question.id));
+        setApprovedQuestions((prev) => prev.filter((q) => q.questionId !== question.questionId));
       }
     } catch (error) {
       console.error("Error deleting question:", error);
@@ -115,7 +117,7 @@ const AdminHomePage = () => {
               <p>No pending questions.</p>
             ) : (
               pendingQuestions.map((question) => (
-                <div className="question-item" key={question.id}>
+                <div className="question-item" key={question.questionId}>
                   <QuestionParent key={question.questionId} question={question} />
                   <div className="actions">
                     <button
@@ -145,7 +147,7 @@ const AdminHomePage = () => {
               <p>No approved questions.</p>
             ) : (
               approvedQuestions.map((question) => (
-                <div className="question-item" key={question.id}>
+                <div className="question-item" key={question.questionId}>
                   <QuestionParent key={question.questionId} question={question} />
                   <div className="actions">
                     <button
@@ -166,7 +168,7 @@ const AdminHomePage = () => {
 
         {showConfirmation && (
           <div className="confirmation-dialog">
-            <p>Are you sure you want to delete this question?</p>
+            <p className="new">Are you sure you want to delete this question?</p>
             <div className="dialog-actions">
               <button onClick={handleConfirmDelete}>Yes</button>
               <button onClick={handleDeleteCancel}>No</button>

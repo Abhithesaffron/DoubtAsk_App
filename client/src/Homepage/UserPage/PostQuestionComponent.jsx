@@ -1,12 +1,23 @@
 import React, { useState } from "react";
+import axios from "axios";
 
-const PostQuestionComponent = ({ handleSubmitQuestion }) => {
+const PostQuestionComponent = () => {
   const [newQuestion, setNewQuestion] = useState("");
+  const token = localStorage.getItem("authToken");
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     if (newQuestion.trim() === "") return;
-    handleSubmitQuestion(newQuestion);
-    setNewQuestion("");
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/api/questions/`,
+        { text: newQuestion },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setNewQuestion("");
+      // Optionally, update the list of pending or user questions here
+    } catch (error) {
+      console.error("Error submitting question:", error);
+    }
   };
 
   return (

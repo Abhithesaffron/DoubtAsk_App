@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import QuestionComponent from "./QuestionComponent";
 import QuestionDetails from "./QuestionDetails";
+import "./QuestionParent.css";
 
 const QuestionParent = ({ question }) => {
-    console.log(question);
   const [openQuestionId, setOpenQuestionId] = useState(null);
 
   const toggleDetails = (id) => {
@@ -11,23 +11,20 @@ const QuestionParent = ({ question }) => {
   };
 
   return (
-    <div className="question-list">
-      
-        openQuestionId === question.id ? (
-          <QuestionDetails
-            key={question.id}
-            question={question}
-            closeDetails={() => toggleDetails(question.id)}
-          />
-        ) : (
-          <QuestionComponent
-            key={question.id}
-            question={question}
-            isOpen={openQuestionId === question.id}
-            toggleDetails={() => toggleDetails(question.id)}
-          />
-        )
-      
+    <div className="question-container">
+      <QuestionComponent
+        key={question.questionId}
+        question={question}
+        isOpen={openQuestionId === question.questionId}
+        toggleDetails={() => toggleDetails(question.questionId)}
+      />
+      {openQuestionId === question.questionId && (
+        <QuestionDetails
+          key={`${question.questionId}-details`}
+          question={question}
+          closeDetails={() => toggleDetails(question.questionId)}
+        />
+      )}
     </div>
   );
 };

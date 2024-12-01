@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Ensure you're using React Router
 import "./UserHomePage.css";
 import HomeComponent from "./HomeComponent";
@@ -8,59 +7,10 @@ import YourQuestionsComponent from "./YourQuestionsComponent";
 import PendingApprovalsComponent from "./PendingApprovalsComponent";
 import { useAdminContext } from '../../Context/AdminContext';
 
-const BASE_URL = `${import.meta.env.VITE_BASE_URL}/api`;
-
 const UserHomePage = () => {
-  const [approvedQuestions, setApprovedQuestions] = useState([]);
-  const [pendingQuestions, setPendingQuestions] = useState([]);
-  const [userQuestions, setUserQuestions] = useState([]);
   const [view, setView] = useState("home");
   const navigate = useNavigate(); // For navigation
-  const token = localStorage.getItem("authToken");
-  const username = localStorage.getItem("userName");
   const { setIsUserLoggedIn } = useAdminContext(); // Access the context for user login state
-
-  // Fetch data from the server
-  useEffect(() => {
-    const fetchQuestions = async () => {
-      try {
-        const approved = await axios.get(`${BASE_URL}/questions/approved`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        const pending = await axios.get(`${BASE_URL}/questions/user/pending`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        const userQ = await axios.get(`${BASE_URL}/questions/user`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-
-        setApprovedQuestions(approved.data);
-        setPendingQuestions(pending.data);
-        setUserQuestions(userQ.data);
-      } catch (error) {
-        console.error("Error fetching questions:", error);
-      }
-    };
-
-    fetchQuestions();
-  }, [token]);
-
-  // Handle submitting a new question
-  const handleSubmitQuestion = async (newQuestion) => {
-    try {
-      const response = await axios.post(
-        `${BASE_URL}/questions/`,
-        { text: newQuestion },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      const question = response.data;
-      setPendingQuestions((prev) => [...prev, question]);
-      setUserQuestions((prev) => [...prev, question]);
-      setView("home");
-    } catch (error) {
-      console.error("Error submitting question:", error);
-    }
-  };
 
   // Handle Logout
   const handleLogout = () => {
@@ -100,7 +50,7 @@ const UserHomePage = () => {
           </button>
         </div>
         <div className="header-right">
-          <span>{username}</span>
+          <span>{localStorage.getItem("userName")}</span>
           <button className="logout-button" onClick={handleLogout}>
             Logout
           </button>
@@ -108,14 +58,10 @@ const UserHomePage = () => {
       </header>
 
       <main>
-        {view === "home" && <HomeComponent approvedQuestions={approvedQuestions} />}
-        {view === "post-question" && (
-          <PostQuestionComponent handleSubmitQuestion={handleSubmitQuestion} />
-        )}
-        {view === "your-questions" && <YourQuestionsComponent userQuestions={userQuestions} />}
-        {view === "pending-approvals" && (
-          <PendingApprovalsComponent pendingQuestions={pendingQuestions} />
-        )}
+        {view === "home" && <HomeComponent />}
+        {view === "post-question" && <PostQuestionComponent />}
+        {view === "your-questions" && <YourQuestionsComponent />}
+        {view === "pending-approvals" && <PendingApprovalsComponent />}
       </main>
     </div>
   );
