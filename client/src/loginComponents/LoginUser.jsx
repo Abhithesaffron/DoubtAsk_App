@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAdminContext } from '../Context/AdminContext'; // Import the context for user login state
+import { toast } from 'react-toastify'; // Import toast
+import 'react-toastify/dist/ReactToastify.css'; // Import CSS
 import './LoginSignup.css';
 
 const LoginUser = () => {
@@ -11,7 +13,9 @@ const LoginUser = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    try {
+
+    // Define the login API call
+    const loginApiCall = async () => {
       const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/users/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -31,14 +35,18 @@ const LoginUser = () => {
 
         // Navigate to the UserHomePage
         navigate('/user-home');
-
-        alert('User login successful!');
+        return data.message || 'User login successful!';
       } else {
-        alert(data.message || 'Login failed!');
+        throw new Error(data.message || 'Login failed!');
       }
-    } catch (error) {
-      alert('User login failed!');
-    }
+    };
+
+    // Show a promise-based toast
+    toast.promise(loginApiCall(), {
+      pending: 'Logging in, please wait... It may take some time',
+      success: 'Login successful!',
+      error: 'Login failed. Please check your credentials.',
+    });
   };
 
   return (

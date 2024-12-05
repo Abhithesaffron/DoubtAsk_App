@@ -1,23 +1,45 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const PostQuestionComponent = () => {
   const [newQuestion, setNewQuestion] = useState("");
   const token = localStorage.getItem("authToken");
 
   const onSubmit = async () => {
-    if (newQuestion.trim() === "") return;
-    try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/api/questions/`,
-        { text: newQuestion },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      setNewQuestion("");
-      // Optionally, update the list of pending or user questions here
-    } catch (error) {
-      console.error("Error submitting question:", error);
+    if (newQuestion.trim() === "") {
+      toast.error("Question cannot be empty!");
+      return;
     }
+
+    toast.promise(
+      new Promise(async (resolve, reject) => {
+        try {
+          const response = await axios.post(
+            `${import.meta.env.VITE_BASE_URL}/api/questions/`,
+            { text: newQuestion },
+            { headers: { Authorization: `Bearer ${token}` } }
+          );
+
+          setNewQuestion(""); // Clear the input field on success
+          resolve("Question posted successfully!");
+
+          // Optionally, trigger updates to question lists or UI here
+        } catch (error) {
+          reject("Failed to post the question. Please try again!");
+        }
+      }),
+      {
+        pending: "Submitting your question...",
+        success: "Question posted successfully!",
+        error: {
+          render({ data }) {
+            return data; // Use the custom error message
+          },
+        },
+      }
+    );
   };
 
   return (

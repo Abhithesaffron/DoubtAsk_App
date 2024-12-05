@@ -8,6 +8,7 @@ import SignupUser from './loginComponents/SignupUser';
 import AdminHomePage from './Homepage/AdminPage/AdminHomePage';
 import UserHomePage from './Homepage/UserPage/UserHomePage';
 import ProtectedRoute from './RouteProtection/ProtectedRoute'; // Protect routes
+import { ToastContainer } from 'react-toastify';
 import './App.css'; // Import App-specific CSS
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
     <AdminProvider>
       <Router>
       <div className="app-container full-screen-center">
+      <ToastContainer /> {/* Toast container */}
           <Routes>
             {/* Starting Page */}
             <Route path="/" element={<StartingPage />} />

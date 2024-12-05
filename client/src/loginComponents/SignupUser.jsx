@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify'; // Import toast
+import 'react-toastify/dist/ReactToastify.css'; // Import Toast CSS
 import './LoginSignup.css';
 
 const SignupUser = () => {
@@ -9,8 +11,9 @@ const SignupUser = () => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    try {
-      // Send POST request to the server to create a new user
+
+    // Define the signup API call
+    const signupApiCall = async () => {
       const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/users/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -19,17 +22,20 @@ const SignupUser = () => {
 
       const data = await response.json();
 
-      // Check if the signup was successful
-      // console.log(response.ok , data);
       if (response.ok) {
         navigate('/login-user'); // Navigate to login page on successful signup
-        alert('Signup successful!');
+        return data.message || 'Signup successful!';
       } else {
-        alert(data.error || 'Signup unsuccessful!'); // Show error message if signup fails
+        throw new Error(data.error || 'Signup unsuccessful!');
       }
-    } catch (error) {
-      alert('Signup failed! Please try again.');
-    }
+    };
+
+    // Show a promise-based toast
+    toast.promise(signupApiCall(), {
+      pending: 'Creating your account, please wait...',
+      success: 'Signup successful! Redirecting to login page...',
+      error: 'Signup failed! Please try again.',
+    });
   };
 
   return (
