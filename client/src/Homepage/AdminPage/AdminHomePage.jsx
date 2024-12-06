@@ -10,6 +10,8 @@ const AdminHomePage = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("authToken");
+    localStorage.removeItem("userName");
+    localStorage.removeItem("userId");
     setIsAdminLoggedIn(false); // Update admin login state
     setIsUserLoggedIn(false); // Update user login state
     window.location.href = "/"; // Redirect to the login page

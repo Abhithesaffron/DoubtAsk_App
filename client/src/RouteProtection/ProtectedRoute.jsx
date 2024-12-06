@@ -5,7 +5,7 @@ import { useAdminContext } from '../Context/AdminContext.jsx';
 const ProtectedRoute = ({ children }) => {
   const { isAdminLoggedIn, isUserLoggedIn } = useAdminContext();
 
-  // Check if the current route is for admin or user
+   // Check if the current route is for admin or user
   if (window.location.pathname.includes('/admin-home') && !isAdminLoggedIn) {
     return <Navigate to="/" />;
   }
@@ -14,13 +14,7 @@ const ProtectedRoute = ({ children }) => {
     return <Navigate to="/" />;
   }
 
-  const token = localStorage.getItem('authToken');
-
-  if (!token) {
-    // If no token, redirect to login/signup page
-    return <Navigate to="/" replace />;
-  }
-
+  // Render protected content if all checks pass
   return children;
 };
 

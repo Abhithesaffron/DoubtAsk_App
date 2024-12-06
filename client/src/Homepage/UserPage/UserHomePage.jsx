@@ -16,6 +16,7 @@ const UserHomePage = () => {
   const handleLogout = () => {
     localStorage.removeItem("authToken");
     localStorage.removeItem("userName");
+    localStorage.removeItem("userId");
     setIsUserLoggedIn(false);
     navigate("/"); // Navigate to login page
   };
