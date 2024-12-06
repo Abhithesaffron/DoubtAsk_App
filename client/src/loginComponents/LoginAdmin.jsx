@@ -47,7 +47,7 @@ const LoginAdmin = () => {
         }
       }),
       {
-        pending: 'Logging in as admin, please wait...',
+        pending: 'Logging in as admin, please wait... It may take some time for first login',
         success: 'Admin login successful!',
         error: {
           render({ data }) {

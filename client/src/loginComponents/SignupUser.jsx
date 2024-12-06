@@ -32,7 +32,7 @@ const SignupUser = () => {
 
     // Show a promise-based toast
     toast.promise(signupApiCall(), {
-      pending: 'Creating your account, please wait...',
+      pending: 'Creating your account, please wait... It may take some time for first Signup',
       success: 'Signup successful! Redirecting to login page...',
       error: 'Signup failed! Please try again.',
     });

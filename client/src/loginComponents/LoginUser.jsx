@@ -43,7 +43,7 @@ const LoginUser = () => {
 
     // Show a promise-based toast
     toast.promise(loginApiCall(), {
-      pending: 'Logging in, please wait... It may take some time',
+      pending: 'Logging in, please wait... It may take some time for first login',
       success: 'Login successful!',
       error: 'Login failed. Please check your credentials.',
     });
